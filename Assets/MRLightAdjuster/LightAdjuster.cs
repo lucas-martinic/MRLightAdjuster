@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LightAdjuster : MonoBehaviour
 {
@@ -35,18 +33,12 @@ public class LightAdjuster : MonoBehaviour
 
     private void IntensityChanged(float newValue)
     {
-        if (newValue != directionalLight.intensity)
-        {
-            directionalLight.intensity = newValue;
-        }
+        directionalLight.intensity = newValue;
     }
 
     private void ShadowChanged(float newValue)
     {
-        if(newValue != directionalLight.shadowStrength)
-        {
-            directionalLight.shadowStrength = newValue;
-        }
+        directionalLight.shadowStrength = newValue;
     }
 
     private void WarmthChanged(float newValue)
@@ -95,7 +87,6 @@ public class LightAdjuster : MonoBehaviour
         //Open/close adjuster
         if (OVRInput.GetDown(OVRInput.Button.Start, OVRInput.Controller.Hands))
         {
-            Debug.Log("Start pressed");
             clickCounter++;
             if(clickCounter >= numberOfClicksToOpen)
             {
