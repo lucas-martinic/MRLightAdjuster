@@ -14,7 +14,7 @@ You will find a LightAdjuster prefab that you can drag and drop in your scene.
 Scene requirements:
 - URP
 - Directional Light
-- OVRCameraRig with HandGrab interactions.
+- OVRCameraRig with HandGrabInteractors (Meta's Interaction SDK, included in the All-In-One package https://assetstore.unity.com/packages/tools/integration/meta-xr-all-in-one-sdk-269657)
 - Optimized for hand-tracking, but should potentially work with controllers, only interaction used is grabbing through HandGrabInteractable.
 
 If the requirements are met, the prefab will automatically assign the required references.
