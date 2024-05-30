@@ -11,7 +11,7 @@ public class LightAdjuster : MonoBehaviour
     [SerializeField] Slider3D warmthSlider;
     [SerializeField] Slider3D shadowSlider;
 
-    [SerializeField] int numberOfClicksToOpen = 3;
+    [SerializeField] int numberOfClicksToOpen = 2;
     private int clickCounter;
 
     [Header("Automatic assign")]
@@ -20,9 +20,6 @@ public class LightAdjuster : MonoBehaviour
     [SerializeField] Transform mainCamera;
 
     private bool isAdjusterOpen;
-
-    [SerializeField] Gradient lightGradient;
-
     private void Awake()
     {
         OpenAdjuster(false);
