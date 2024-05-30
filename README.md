@@ -15,6 +15,7 @@ Scene requirements:
 - URP
 - Directional Light
 - OVRCameraRig with HandGrab interactions.
+- Optimized for hand-tracking, but should potentially work with controllers, only interaction used is grabbing through HandGrabInteractable.
 
 If the requirements are met, the prefab will automatically assign the required references.
 
