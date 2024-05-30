@@ -3,10 +3,19 @@
 
 ## What is MRLA?
 
-A Drag-and-drop solution for better and faster mixed reality light adjustment, especially when recording video footage in different light conditions with the same app.
+A drag-and-drop solution for better and faster mixed reality light adjustment, especially when recording video footage in different light conditions with the same app.
 
 ## Get Started
 
 You can either clone the repository, which contains the same scene used to record the video, or you can directly download the .unitypackage here: https://github.com/lucas-martinic/MRLightAdjuster/blob/main/Assets/MRLightAdjuster/MRLightAdjuster.unitypackage
+
+You will find a LightAdjuster prefab that you can drag and drop in your scene.
+
+Scene requirements:
+- URP
+- Directional Light
+- OVRCameraRig with HandGrab interactions.
+
+If the requirements are met, the prefab will automatically assign the required references.
 
 ## Have fun!
