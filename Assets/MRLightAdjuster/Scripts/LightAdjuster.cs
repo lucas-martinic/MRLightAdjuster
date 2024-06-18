@@ -12,6 +12,8 @@ public class LightAdjuster : MonoBehaviour
     [SerializeField] Slider3D shadowSlider;
 
     [SerializeField] int numberOfClicksToOpen = 2;
+    [SerializeField] float timeframe = 0.5f;
+    private float timeCounter = 0;
     private int clickCounter;
 
     [Header("Automatic assign")]
@@ -46,12 +48,12 @@ public class LightAdjuster : MonoBehaviour
     //Automatically find for required elements in the scene.
     private void OnValidate()
     {
-        if(directionalLight == null)
+        if (directionalLight == null)
         {
             var lights = FindObjectsByType<Light>(FindObjectsSortMode.None);
             foreach (var item in lights)
             {
-                if(item.type == LightType.Directional)
+                if (item.type == LightType.Directional)
                 {
                     directionalLight = item;
                     directionalLight.useColorTemperature = true;
@@ -59,11 +61,11 @@ public class LightAdjuster : MonoBehaviour
                 }
             }
         }
-        if(mainCamera == null)
+        if (mainCamera == null)
         {
             mainCamera = Camera.main.transform;
         }
-        if(leftHandAnchor == null)
+        if (leftHandAnchor == null)
         {
             leftHandAnchor = GameObject.Find("LeftHandAnchor").transform;
             if (!leftHandAnchor) Debug.LogWarning("There's no rig in the scene.");
@@ -72,7 +74,7 @@ public class LightAdjuster : MonoBehaviour
 
     private void OnEnable()
     {
-        if(directionalLight != null)
+        if (directionalLight != null)
         {
             lightGizmo.rotation = directionalLight.transform.rotation;
             adjustSphere.position = lightGizmo.position - lightGizmo.forward * 0.1f;
@@ -85,11 +87,18 @@ public class LightAdjuster : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.Start, OVRInput.Controller.Hands))
         {
             clickCounter++;
-            if(clickCounter >= numberOfClicksToOpen)
+            if (clickCounter >= numberOfClicksToOpen)
             {
                 OpenAdjuster(!isAdjusterOpen);
                 clickCounter = 0;
+                timeCounter = 0;
             }
+        }
+        if (clickCounter == 1) timeCounter += Time.deltaTime;
+        if (timeCounter > timeframe)
+        {
+            clickCounter = 0;
+            timeCounter = 0;
         }
 
         if (lightGizmo && adjustSphere)
@@ -98,7 +107,7 @@ public class LightAdjuster : MonoBehaviour
             lightGizmo.forward = direction;
             directionalLight.transform.forward = direction;
         }
-        if(lightIcon && mainCamera)
+        if (lightIcon && mainCamera)
         {
             Vector3 direction = (mainCamera.position - lightIcon.position).normalized;
             lightIcon.forward = direction;
